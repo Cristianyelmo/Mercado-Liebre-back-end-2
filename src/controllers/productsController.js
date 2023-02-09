@@ -22,6 +22,9 @@ const controller = {
 	// Root - Show all products
 	index: (req, res) => {
 
+		const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
+
 
 		if (!req.query.order  && !req.query.category) {
 			writeJson();
@@ -82,6 +85,9 @@ const controller = {
 	// Detail - Detail from one product
 	detail: (req, res) => {
 		// Do the magic
+
+		const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
 const Idrequerido = req.params.id
 
 const encontrar = products.find(producto =>
@@ -113,7 +119,7 @@ const productoRelacionados = products.filter(prod => prod.category === encontrar
 	// Create -  Method to store
 	store: (req, res) => {
 
- 
+		
 	
 		const{name,price,discount,category,description}=req.body
 		
@@ -206,7 +212,7 @@ return edicion
 		
 		
 		 
-		res.redirect(`/products`)
+		res.redirect(`/products/detail/` + Idrequerido)
 
 		
 
