@@ -130,7 +130,7 @@ const productoRelacionados = products.filter(prod => prod.category === encontrar
 			description:description.trim(),
 			price:+price,
 			discount:+discount,
-			image:"default-image.png",
+			image:req.file ? req.file.filename : null,
 			category:category.trim(),
 			
 
@@ -176,7 +176,7 @@ const productoRelacionados = products.filter(prod => prod.category === encontrar
 			description:description.trim(),
 			price:+price,
 			discount:+discount,
-			image:prod.image,
+			image:req.file ? req.file.filename : null,
 			category:category.trim(),
 			
 

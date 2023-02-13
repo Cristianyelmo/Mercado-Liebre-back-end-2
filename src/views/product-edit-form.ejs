@@ -14,7 +14,7 @@
 			<h2 class="products-title">Estás editando: <i><%=name%></i></h2>
 		</div>
 		<div class="col-12">
-			<form action="/products/<%=id%>?_method=PUT" method="POST">
+			<form action="/products/<%=id%>?_method=PUT" method="POST" enctype="multipart/form-data">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto: </label>
@@ -39,6 +39,11 @@
 					<div class="col-12">
 						<label for="description" class="form-label">Descipción:</label>
 						<textarea name="description" id="description" class="form-input"><%= description%> </textarea>
+					</div>
+
+					<div class="col-12">
+						<label for="description" class="form-label">Foto: </label>
+						<input type="file" name="image" class="form-control">
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Guardar producto</button>
