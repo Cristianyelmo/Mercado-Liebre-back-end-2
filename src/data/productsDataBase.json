@@ -127,11 +127,29 @@
    },
    {
       "id": 17,
-      "name": "michis",
-      "description": "aaaaaaaaaaaaaaaaaaaaaa",
+      "name": "xdxdxdx",
+      "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "price": 2323,
+      "discount": 23232,
+      "image": "1676908413509_products_.jpg",
+      "category": ""
+   },
+   {
+      "id": 18,
+      "name": "aaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "description": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+      "price": 34343,
+      "discount": 232323,
+      "image": "1676909190167_products_.JPG",
+      "category": "in-sale"
+   },
+   {
+      "id": 19,
+      "name": "aaaaaaaaaaaaaaa",
+      "description": "aaaaaaaaaaaaaaaaaaaa",
       "price": 100000,
-      "discount": 0,
-      "image": "1676320760022_products_.jpeg",
+      "discount": 2323,
+      "image": "1676909343350_products_.JPG",
       "category": "in-sale"
    }
 ]
