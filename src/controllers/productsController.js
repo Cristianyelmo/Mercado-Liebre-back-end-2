@@ -1,9 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-const Swal = require('sweetalert2')
+/* const Swal = require('sweetalert2') */
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
+
+const {validationResult}=require('express-validator')
 
 
 
@@ -121,8 +123,9 @@ const productoRelacionados = products.filter(prod => prod.category === encontrar
 	
 	// Create -  Method to store
 	store: (req, res) => {
-
+		const errors = validationResult(req);
 		
+		if(errors.isEmpty()){
 	
 		const{name,price,discount,category,description}=req.body
 		
@@ -147,7 +150,14 @@ const productoRelacionados = products.filter(prod => prod.category === encontrar
 		fs.writeFileSync('./src/data/productsDataBase.json',JSON.stringify(products,null,3),'utf-8')
 		return res.redirect(`/products`)
 
+	}else{
 
+		return res.render('product-create-form',{
+			errors:errors.mapped()
+
+		})
+
+		}
 		
 
 	},
@@ -169,6 +179,10 @@ const productoRelacionados = products.filter(prod => prod.category === encontrar
 	
 	// Update - Method to update
 	update: (req, res) => {
+
+		const errors = validationResult(req);
+		
+		if(errors.isEmpty()){
 		const Idrequerido = req.params.id
 		const{name,price,discount,category,description}=req.body
 		const prod = products.find(prod =>prod.id === +Idrequerido)
@@ -218,9 +232,23 @@ return edicion
 		res.redirect(`/products/detail/` + Idrequerido)
 
 		
-
-
 		
+		
+	}else{
+		const { id } = req.params;
+
+		const course = products.find(product => product.id === +id);
+
+
+		return res.render('product-edit-form',{
+			...course,
+   
+      errors:errors.mapped(),
+      old:req.body
+
+		})
+
+	}
 		
 
 		

@@ -4,8 +4,15 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
+const methodOverride =  require('method-override');
 
+
+const mainRouter = require('./routes/main'); // Rutas main
+const productsRouter = require('./routes/products');
+const UsersRouter = require('./routes/users'); // Rutas /products
+const session = require('express-session');
+const LocalCheck = require('./middlewares/LocalCheck');// Pasar poder usar los métodos PUT y DELETE
+const cookieCheck = require('./middlewares/cookieCheck');
 // ************ express() - (don't touch) ************
 const app = express();
 
@@ -25,11 +32,23 @@ app.set('views', path.join(__dirname, '/views')); // Define la ubicación de la 
 
 // ************ WRITE YOUR CODE FROM HERE ************
 // ************ Route System require and use() ************
-const mainRouter = require('./routes/main'); // Rutas main
-const productsRouter = require('./routes/products'); // Rutas /products
+
+
+
+
+app.use(session({
+  secret: "MercadoLiebre",
+  resave:false,
+  saveUninitialized:true
+}))
+app.use(cookieCheck)
+app.use(LocalCheck)
+
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
+app.use('/users', UsersRouter);
+
 
 
 
